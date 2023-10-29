@@ -192,6 +192,7 @@ public class RestApi {
     public String showProductSearchSort(@RequestParam(name = "productName", required = false, defaultValue = "") String productName,
                                         @RequestParam(name = "type", required = false, defaultValue = "") String type,
                                         @RequestParam(name = "sortBy", required = false, defaultValue = "") String sortBy) {
+
         String sparqlQuery = "PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#> " +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                 "SELECT * " +
@@ -204,13 +205,15 @@ public class RestApi {
                 "        ns:quantity ?quantity; " +
                 "        ns:type ?type;";
 
-        if (!productName.isEmpty()) {
+        if (productName != null && !productName.isEmpty()) {
             sparqlQuery += " FILTER(regex(?name, \"" + productName + "\", \"i\"))";
         }
-        if (!type.isEmpty()) {
+        if (type != null && !type.isEmpty()) {
             sparqlQuery += " FILTER(regex(?type, \"" + type + "\", \"i\"))";
         }
-        if (!sortBy.isEmpty()) {
+
+// ORDER BY clause should be placed after all FILTER conditions
+        if (sortBy != null && !sortBy.isEmpty()) {
             if ("price".equals(sortBy)) {
                 sparqlQuery += " } ORDER BY ?price";
             } else if ("quantity".equals(sortBy)) {
@@ -218,7 +221,7 @@ public class RestApi {
             }
         }
 
-        sparqlQuery += " }";
+        sparqlQuery += " }"; // Close the SPARQL query
         if (model != null) {
             Model inferredModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
             OutputStream res = JenaEngine.executeQuery(inferredModel, sparqlQuery);
