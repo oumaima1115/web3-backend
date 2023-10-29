@@ -1,15 +1,10 @@
 package com.example.demo;
 
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import org.apache.jena.rdf.model.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,6 +25,47 @@ public class RestApi {
         } else {
             return ("Error when reading model from ontology");
         }
+    }
+
+    @GetMapping("/eventsByElement")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String getEventsByElement(@RequestParam("searchTerm") String searchTerm, @RequestParam("searchCriteria") String searchCriteria) {
+        if (model != null) {
+            String NS = model.getNsPrefixURI("");
+            String sparqlQuery = generateSPARQLQuery(searchTerm, searchCriteria);
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            OutputStream res = JenaEngine.executeQueryFile(inferedModel, sparqlQuery);
+            System.out.println(res);
+            return res.toString();
+        } else {
+            return "Error when reading model from ontology";
+        }
+    }
+
+    private String generateSPARQLQuery(String searchTerm, String searchCriteria) {
+        String baseQuery = "PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>\n" +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "SELECT DISTINCT ?event ?title ?description ?date ?address ?capacity ?eventType\n" +
+                "WHERE {\n" +
+                "  ?event rdf:type ns:OnlineEvent;\n" +
+                "         ns:title ?title;\n" +
+                "         ns:description ?description;\n" +
+                "         ns:date ?date;\n" +
+                "         ns:address ?address;\n" +
+                "         ns:capacity ?capacity.\n" +
+                "  BIND(\"Online Event\" AS ?eventType)\n" +
+                "  FILTER (CONTAINS(LCASE(?title), LCASE(?searchTerm))) ||\n" +
+                "         (CONTAINS(LCASE(?description), LCASE(?searchTerm))) ||\n" +
+                "         (CONTAINS(LCASE(?capacity), LCASE(?searchTerm)));\n";
+        if ("title".equalsIgnoreCase(searchCriteria)) {
+            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+        } else if ("description".equalsIgnoreCase(searchCriteria)) {
+            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+        } else if ("capacity".equalsIgnoreCase(searchCriteria)) {
+            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+        }
+        baseQuery += "}";
+        return baseQuery;
     }
 
 

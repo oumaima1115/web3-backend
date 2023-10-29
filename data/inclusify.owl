@@ -657,7 +657,7 @@
         <untitled-ontology-4:address>Ariana, Tunisia</untitled-ontology-4:address>
         <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">104</untitled-ontology-4:capacity>
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
-        <untitled-ontology-4:description>Join Now our event.</untitled-ontology-4:description>
+        <untitled-ontology-4:description>Join React event.</untitled-ontology-4:description>
         <untitled-ontology-4:title>Tuto React Hooks</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
