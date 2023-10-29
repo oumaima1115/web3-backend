@@ -6,8 +6,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT *
 WHERE{
-	?Event rdf:type ns:Event;
+	?OnlineEvent rdf:type ns:OnlineEvent;
 	ns:title ?title;
-	ns:date ?date;
+	ns:capacity ?capacity;
 	ns:description ?description;
 	}
