@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.IOException;
+
+
 @RestController
 public class RestApi {
 
@@ -171,10 +177,51 @@ public class RestApi {
     public String showProductSearch(@RequestParam("productName") String productName) {
         String NS = "";
         if (model != null) {
-            System.out.println(productName);
             NS = model.getNsPrefixURI("");
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
             OutputStream res = JenaEngine.executeQueryFileParams(inferedModel, "data/query_product_name_search.txt",productName);
+            System.out.println(res);
+            return res.toString();
+        } else {
+            return "Error when reading model from ontology";
+        }
+    }
+
+    @GetMapping("/productsearchsort")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String showProductSearchSort(@RequestParam(name = "productName", required = false, defaultValue = "") String productName,
+                                        @RequestParam(name = "type", required = false, defaultValue = "") String type,
+                                        @RequestParam(name = "sortBy", required = false, defaultValue = "") String sortBy) {
+        String sparqlQuery = "PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#> " +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+                "SELECT * " +
+                "WHERE { " +
+                "?Product rdf:type ns:Product; " +
+                "        ns:name ?name; " +
+                "        ns:description ?description; " +
+                "        ns:date ?date; " +
+                "        ns:price ?price; " +
+                "        ns:quantity ?quantity; " +
+                "        ns:type ?type;";
+
+        if (!productName.isEmpty()) {
+            sparqlQuery += " FILTER(regex(?name, \"" + productName + "\", \"i\"))";
+        }
+        if (!type.isEmpty()) {
+            sparqlQuery += " FILTER(regex(?type, \"" + type + "\", \"i\"))";
+        }
+        if (!sortBy.isEmpty()) {
+            if ("price".equals(sortBy)) {
+                sparqlQuery += " } ORDER BY ?price";
+            } else if ("quantity".equals(sortBy)) {
+                sparqlQuery += " } ORDER BY ?quantity";
+            }
+        }
+
+        sparqlQuery += " }";
+        if (model != null) {
+            Model inferredModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            OutputStream res = JenaEngine.executeQuery(inferredModel, sparqlQuery);
             System.out.println(res);
             return res.toString();
         } else {

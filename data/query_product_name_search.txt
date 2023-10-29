@@ -10,5 +10,6 @@ WHERE {
             ns:price ?price;
             ns:quantity ?quantity;
             ns:type ?type;
-    FILTER(CONTAINS(LCASE(STR(?name)), LCASE("%s")))
+    FILTER(STR(?name) CONTAINS "%s" && (?type = ns:%s))
 }
+ORDER BY %s

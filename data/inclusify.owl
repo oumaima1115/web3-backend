@@ -837,6 +837,19 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1">
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Introducing our premium wheelchair, where mobility meets comfort and freedom. Designed for optimal maneuverability and stability</untitled-ontology-4:description>
+        <untitled-ontology-4:name>Wheelchair</untitled-ontology-4:name>
+        <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">700.0</untitled-ontology-4:price>
+        <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">1</untitled-ontology-4:quantity>
+        <untitled-ontology-4:type>Mobility</untitled-ontology-4:type>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#admin -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#admin">
