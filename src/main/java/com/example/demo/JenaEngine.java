@@ -163,7 +163,7 @@ public class JenaEngine {
             }
         }
         String queryString = FileTool.getContents(queryFile);
-        queryString = String.format(queryString, params); // Replace %s with the actual params value
+        queryString = String.format(queryString, params);
         return executeQuery(model, queryString);
     }
 }

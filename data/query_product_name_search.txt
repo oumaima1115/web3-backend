@@ -10,5 +10,5 @@ WHERE {
             ns:price ?price;
             ns:quantity ?quantity;
             ns:type ?type;
-    FILTER(LCASE(STR(?name)) = LCASE("%s"))
+    FILTER(CONTAINS(LCASE(STR(?name)), LCASE("%s")))
 }
