@@ -66,16 +66,10 @@ public class RestApi {
             System.out.println(res);
             return res.toString();
 
-
         } else {
             return ("Error when reading model from ontology");
         }
     }
-
-
-
-
-
 
     @GetMapping("/national")
     @CrossOrigin(origins = "http://localhost:3000")
@@ -156,5 +150,18 @@ public class RestApi {
         }
     }
 
-
+    @GetMapping("/product")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String showProduct() {
+        String NS = "";
+        if (model != null) {
+            NS = model.getNsPrefixURI("");
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_product.txt");
+            System.out.println(res);
+            return res.toString();
+        } else {
+            return ("Error when reading model from ontology");
+        }
+    }
 }
