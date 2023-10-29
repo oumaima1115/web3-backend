@@ -36,7 +36,8 @@ public class RestApi {
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
             OutputStream res = JenaEngine.executeQueryFile(inferedModel, sparqlQuery);
             System.out.println(res);
-            return res.toString();
+            System.out.println("Current Working Directory: " + System.getProperty("user.dir"));
+            return (res==null)?res.toString():null;
         } else {
             return "Error when reading model from ontology";
         }
@@ -54,19 +55,23 @@ public class RestApi {
                 "         ns:address ?address;\n" +
                 "         ns:capacity ?capacity.\n" +
                 "  BIND(\"Online Event\" AS ?eventType)\n" +
-                "  FILTER (CONTAINS(LCASE(?title), LCASE(?searchTerm))) ||\n" +
-                "         (CONTAINS(LCASE(?description), LCASE(?searchTerm))) ||\n" +
-                "         (CONTAINS(LCASE(?capacity), LCASE(?searchTerm)));\n";
+                "  FILTER (CONTAINS(LCASE(?title), LCASE(?searchTerm)) ||\n" +
+                "          CONTAINS(LCASE(?description), LCASE(?searchTerm)) ||\n" +
+                "          CONTAINS(LCASE(?capacity), LCASE(?searchTerm)));\n";
+
         if ("title".equalsIgnoreCase(searchCriteria)) {
-            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+            searchTerm = "\"" + searchTerm + "\"";
         } else if ("description".equalsIgnoreCase(searchCriteria)) {
-            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+            searchTerm = "\"" + searchTerm + "\"";
         } else if ("capacity".equalsIgnoreCase(searchCriteria)) {
-            baseQuery = baseQuery.replace("?searchTerm", "\"" + searchTerm + "\"");
+            searchTerm = "\"" + searchTerm + "\"";
         }
+
+        baseQuery = baseQuery.replace("?searchTerm", searchTerm);
         baseQuery += "}";
         return baseQuery;
     }
+
 
 
 
