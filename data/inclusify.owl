@@ -772,6 +772,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
         <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
+        <untitled-ontology-4:title>new job</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
 
