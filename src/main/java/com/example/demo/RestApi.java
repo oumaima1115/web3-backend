@@ -3,16 +3,20 @@ package com.example.demo;
 
 import java.io.OutputStream;
 
+import java.io.OutputStream;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.util.FileManager;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.IOException;
 
 
 @RestController
@@ -157,18 +161,57 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/product")
+    @GetMapping("/getallproducts")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String showProduct() {
+    public ResponseEntity<String> getallproducts(
+            @RequestParam(value = "typeParam", required = false) String typeParam,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+    ) {
         String NS = "";
         if (model != null) {
-            NS = model.getNsPrefixURI("");
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_product.txt");
-            System.out.println(res);
-            return res.toString();
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_all_products.txt");
+
+            if (typeParam != null && !typeParam.isEmpty()) {
+                queryStr = queryStr.replace("?typeParam", '\"'+ typeParam +'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER (?typeParam != \"\" && ?type = ?typeParam)", "");
+            }
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?name, ?regexParam, \"i\")", "");
+            }
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+            System.out.println(queryStr);
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+            ResultSet results = qexec.execSelect();
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("name", new JsonPrimitive(solution.getLiteral("name").getString()));
+                jsonObject.add("type", new JsonPrimitive(solution.getLiteral("type").getString()));
+                jsonObject.add("description", new JsonPrimitive(solution.getLiteral("description").getString()));
+                jsonObject.add("price", new JsonPrimitive(solution.getLiteral("price").getDouble()));
+                jsonObject.add("quantity", new JsonPrimitive(solution.getLiteral("quantity").getInt()));
+                jsonObject.add("date", new JsonPrimitive(solution.getLiteral("date").getString()));
+                jsonArray.add(jsonObject);
+            }
+            String jsonResult = jsonArray.toString();
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
         } else {
-            return ("Error when reading model from ontology");
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 
