@@ -52,7 +52,7 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/onlineEvents")
+    @GetMapping("/events")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> getOnlineEvents(
             @RequestParam(value = "categoryEvent", required = false) String categoryEvent,
