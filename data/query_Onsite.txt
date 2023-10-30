@@ -9,4 +9,7 @@ WHERE {
          ns:address ?address;
          ns:date ?date;
          ns:capacity ?capacity.
+         ?online ns:was_organized_by ?was_organized_by.
+         ?was_organized_by a ns:NormalUser;
+              ns:name ?userName.
 }

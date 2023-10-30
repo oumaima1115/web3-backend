@@ -37,7 +37,7 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/eventsOnsite")
+    @GetMapping("/OnsiteEvents")
     @CrossOrigin(origins = "http://localhost:3000")
     public String afficherEventsOnsite() {
         String NS = "";
@@ -56,6 +56,7 @@ public class RestApi {
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> getOnlineEvents(
             @RequestParam(value = "categoryEvent", required = false) String categoryEvent,
+            @RequestParam(value = "userName", required = false) String userName,
             @RequestParam(value = "regexParam", required = false) String regexParam,
             @RequestParam(value = "orderBy", required = false) String orderBy,
             @RequestParam(value = "orderType", required = false) String orderType
@@ -80,11 +81,22 @@ public class RestApi {
                 queryStr = queryStr.replace("FILTER (?categoryEventParam != \"\" && ?categoryEvent = ?categoryEventParam)", "");
             }
 
-            if (regexParam != null && !regexParam.isEmpty()) {
-                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            // Set the value of ?userNameParam
+            if (userName != null && !userName.isEmpty()) {
+                // Replace the parameter placeholder with the actual userName value
+                queryStr = queryStr.replace("?userNameParam",  '\"'+userName+'\"' );
             } else {
+                // If userName is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?userNameParam != \"\" && ?userName = ?userNameParam)", "");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam", '\"' + regexParam + '\"');
+            } else {
+                // If regexParam is not provided, remove the FILTER condition for both title
                 queryStr = queryStr.replace("FILTER regex(?title, ?regexParam, \"i\")", "");
             }
+
 
             if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
                     && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
@@ -108,6 +120,7 @@ public class RestApi {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.add("online", new JsonPrimitive(solution.get("online").toString()));
                 jsonObject.add("title", new JsonPrimitive(solution.get("title").toString()));
+                jsonObject.add("userName", new JsonPrimitive(solution.get("userName").toString()));
                 jsonObject.add("categoryEvent", new JsonPrimitive(solution.get("categoryEvent").toString()));
                 jsonArray.add(jsonObject);
             }
@@ -122,6 +135,7 @@ public class RestApi {
             return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
+
 
     @GetMapping("/chaud")
     @CrossOrigin(origins = "http://localhost:3000")
