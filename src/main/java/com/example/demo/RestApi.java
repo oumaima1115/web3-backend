@@ -52,47 +52,74 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/eventSearch")
+    @GetMapping("/onlineEvents")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String showEventSearchSort(@RequestParam(name = "title", required = false, defaultValue = "") String title,
-                                        @RequestParam(name = "description", required = false, defaultValue = "") String description,
-                                        @RequestParam(name = "sortBy", required = false, defaultValue = "") String sortBy) {
-
-        String sparqlQuery = "PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#> " +
-                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-                "SELECT * " +
-                "WHERE { " +
-                "?online rdf:type ns:Online; " +
-                "        ns:title ?title; " +
-                "        ns:description ?description; " +
-                "        ns:date ?date; " +
-                "        ns:address ?address; " +
-                "        ns:capacity ?capacity; ";
-
-        if (title != null && !title.isEmpty()) {
-            sparqlQuery += " FILTER(regex(?title, \"" + title + "\", \"i\"))";
-        }
-        if (description != null && !description.isEmpty()) {
-            sparqlQuery += " FILTER(regex(?description, \"" + description + "\", \"i\"))";
-        }
-
-// ORDER BY clause should be placed after all FILTER conditions
-        if (sortBy != null && !sortBy.isEmpty()) {
-            if ("capacity".equals(sortBy)) {
-                sparqlQuery += " } ORDER BY ?capacity";
-            } else if ("date".equals(sortBy)) {
-                sparqlQuery += " } ORDER BY ?date";
-            }
-        }
-
-        sparqlQuery += " }"; // Close the SPARQL query
+    public ResponseEntity<String> getOnlineEvents(
+            @RequestParam(value = "categoryEvent", required = false) String categoryEvent,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+    ) {
+        String NS = "";
+        // lire le model a partir d'une ontologie
         if (model != null) {
-            Model inferredModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-            OutputStream res = JenaEngine.executeQuery(inferredModel, sparqlQuery);
-            System.out.println(res);
-            return res.toString();
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_onLineEvents.txt");
+
+
+            // Set the value of ?categoryEventParam
+            if (categoryEvent != null && !categoryEvent.isEmpty()) {
+                // Replace the parameter placeholder with the actual categoryEvent value
+                queryStr = queryStr.replace("?categoryEventParam",  '\"'+categoryEvent+'\"' );
+            } else {
+                // If categoryEvent is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?categoryEventParam != \"\" && ?categoryEvent = ?categoryEventParam)", "");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?title, ?regexParam, \"i\")", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("online", new JsonPrimitive(solution.get("online").toString()));
+                jsonObject.add("title", new JsonPrimitive(solution.get("title").toString()));
+                jsonObject.add("categoryEvent", new JsonPrimitive(solution.get("categoryEvent").toString()));
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
         } else {
-            return "Error when reading model from ontology";
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 
@@ -335,76 +362,6 @@ public class RestApi {
             return res.toString();
         } else {
             return "Error when reading model from ontology";
-        }
-    }
-    @GetMapping("/skills")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<String> getSkills(
-            @RequestParam(value = "domain", required = false) String domain,
-            @RequestParam(value = "regexParam", required = false) String regexParam,
-            @RequestParam(value = "orderBy", required = false) String orderBy,
-            @RequestParam(value = "orderType", required = false) String orderType
-    ) {
-        String NS = "";
-        // lire le model a partir d'une ontologie
-        if (model != null) {
-            // lire le Namespace de l�ontologie
-            NS = model.getNsPrefixURI("");
-
-            // apply our rules on the owlInferencedModel
-            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Skill.txt");
-
-
-            // Set the value of ?domainParam
-            if (domain != null && !domain.isEmpty()) {
-                // Replace the parameter placeholder with the actual domain value
-                queryStr = queryStr.replace("?domainParam",  '\"'+domain+'\"' );
-            } else {
-                // If domain is not provided, remove the parameter and the FILTER condition from the query
-                queryStr = queryStr.replace("FILTER (?domainParam != \"\" && ?domain = ?domainParam)", "");
-            }
-
-            if (regexParam != null && !regexParam.isEmpty()) {
-                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
-            } else {
-                queryStr = queryStr.replace("FILTER regex(?name, ?regexParam, \"i\")", "");
-            }
-
-            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
-                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
-                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
-                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
-            } else {
-                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
-            }
-
-            System.out.println(queryStr);
-            // Execute the query
-            Query query = QueryFactory.create(queryStr);
-            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
-
-            // Execute the query
-            ResultSet results = qexec.execSelect();
-
-            JsonArray jsonArray = new JsonArray();
-            while (results.hasNext()) {
-                QuerySolution solution = results.next();
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.add("skill", new JsonPrimitive(solution.get("skill").toString()));
-                jsonObject.add("name", new JsonPrimitive(solution.get("name").toString()));
-                jsonObject.add("domain", new JsonPrimitive(solution.get("domain").toString()));
-                jsonArray.add(jsonObject);
-            }
-
-            // Convert the JSON to a string
-            String jsonResult = jsonArray.toString();
-
-            System.out.println(jsonResult);
-            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
-
-        } else {
-            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 
