@@ -408,6 +408,180 @@ public class RestApi {
         }
     }
 
+    @GetMapping("/skills")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<String> getSkills(
+            @RequestParam(value = "domain", required = false) String domain,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+    ) {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Skill.txt");
 
 
+            // Set the value of ?domainParam
+            if (domain != null && !domain.isEmpty()) {
+                // Replace the parameter placeholder with the actual domain value
+                queryStr = queryStr.replace("?domainParam",  '\"'+domain+'\"' );
+            } else {
+                // If domain is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?domainParam != \"\" && ?domain = ?domainParam)", "");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?name, ?regexParam, \"i\")", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("skill", new JsonPrimitive(solution.get("skill").toString()));
+                jsonObject.add("name", new JsonPrimitive(solution.get("name").toString()));
+                jsonObject.add("domain", new JsonPrimitive(solution.get("domain").toString()));
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/questions")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<String> getQuestions(
+            @RequestParam(value = "score", required = false) String score,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+            ) {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Question.txt");
+
+
+            // Set the value of ?domainParam
+            if (score != null && !score.isEmpty()) {
+                // Replace the parameter placeholder with the actual domain value
+                queryStr = queryStr.replace("?scoreParam",  score );
+            } else {
+                // If domain is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?scoreParam != \"\" && ?questionScore = ?scoreParam)", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("question", new JsonPrimitive(solution.get("question").toString()));
+                jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
+                jsonObject.add("questionScore", new JsonPrimitive(solution.getLiteral("questionScore").getInt()));
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
+
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/answers")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String getAnswers() {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // query on the model after inference
+            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Answer.txt");
+            System.out.println(res);
+            return res.toString();
+
+
+        } else {
+            return ("Error when reading model from ontology");
+        }
+    }
+
+    @GetMapping("/quizzes")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String getQuizzes() {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // query on the model after inference
+            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Quiz.txt");
+            System.out.println(res);
+            return res.toString();
+
+
+        } else {
+            return ("Error when reading model from ontology");
+        }
+    }
 }
