@@ -3,13 +3,14 @@ package com.example.demo;
 
 import java.io.OutputStream;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.util.FileManager;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -193,8 +194,11 @@ public class RestApi {
 
     @GetMapping("/skills")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String getSkills(
-            @RequestParam(value = "domain", required = false) String domain
+    public ResponseEntity<String> getSkills(
+            @RequestParam(value = "domain", required = false) String domain,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
     ) {
         String NS = "";
         // lire le model a partir d'une ontologie
@@ -204,13 +208,6 @@ public class RestApi {
 
             // apply our rules on the owlInferencedModel
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-
-            // query on the model after inference
-            /*OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Skill.txt");
-
-            System.out.println(res);
-            return res.toString();*/
-
             String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Skill.txt");
 
 
@@ -221,6 +218,20 @@ public class RestApi {
             } else {
                 // If domain is not provided, remove the parameter and the FILTER condition from the query
                 queryStr = queryStr.replace("FILTER (?domainParam != \"\" && ?domain = ?domainParam)", "");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?name, ?regexParam, \"i\")", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
             }
 
             System.out.println(queryStr);
@@ -245,10 +256,10 @@ public class RestApi {
             String jsonResult = jsonArray.toString();
 
             System.out.println(jsonResult);
-            return jsonResult;
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
 
         } else {
-            return ("Error when reading model from ontology");
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 }
