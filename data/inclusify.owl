@@ -97,8 +97,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#was_attended_by">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#NormalUser"/>
     </owl:ObjectProperty>
     
@@ -160,8 +159,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#was_organized_by">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#NormalUser"/>
         <rdfs:range>
             <owl:Restriction>
@@ -243,7 +241,6 @@
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#User"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -253,7 +250,7 @@
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#birth_date -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#birth_date">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#address"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#User"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
     </owl:DatatypeProperty>
@@ -264,8 +261,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#capacity">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
     </owl:DatatypeProperty>
     
@@ -286,10 +282,9 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#date">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Comment"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#JobApplication"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Product"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
@@ -303,9 +298,8 @@
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Comment"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Product"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Question"/>
@@ -410,9 +404,8 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#title">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -654,11 +647,6 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
         <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
-        <untitled-ontology-4:address>Ariana, Tunisia</untitled-ontology-4:address>
-        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">104</untitled-ontology-4:capacity>
-        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
-        <untitled-ontology-4:description>Join Now our event.</untitled-ontology-4:description>
-        <untitled-ontology-4:title>Tuto React Hooks</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
 
@@ -690,6 +678,7 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#JobApplication"/>
         <untitled-ontology-4:was_applied_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
         <untitled-ontology-4:was_applied_to rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer"/>
+        <untitled-ontology-4:motivation>not motivated</untitled-ontology-4:motivation>
     </owl:NamedIndividual>
     
 
@@ -740,11 +729,7 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
         <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
         <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
-        <untitled-ontology-4:address>https://meet.google.com/rmf-uxzx-skw</untitled-ontology-4:address>
-        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">400</untitled-ontology-4:capacity>
-        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
-        <untitled-ontology-4:description>Join now our event.</untitled-ontology-4:description>
-        <untitled-ontology-4:title>Learn Python in 4hrs</untitled-ontology-4:title>
+        <untitled-ontology-4:title>Party Timeeee!!!!</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
 
@@ -788,7 +773,24 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
         <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
+        <untitled-ontology-4:address>9arrabi</untitled-ontology-4:address>
+        <untitled-ontology-4:description>khedma behya</untitled-ontology-4:description>
+        <untitled-ontology-4:salary_range>$1000-$1000</untitled-ontology-4:salary_range>
+        <untitled-ontology-4:title>new job</untitled-ontology-4:title>
+        <untitled-ontology-4:type>remote</untitled-ontology-4:type>
     </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer -->
+
+        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#FullStack">
+            <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
+            <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
+            <untitled-ontology-4:address>hay houni</untitled-ontology-4:address>
+            <untitled-ontology-4:description>khedma 3al 7it</untitled-ontology-4:description>
+            <untitled-ontology-4:salary_range>$500-$1000</untitled-ontology-4:salary_range>
+            <untitled-ontology-4:title>khedma</untitled-ontology-4:title>
+            <untitled-ontology-4:type>remote</untitled-ontology-4:type>
+        </owl:NamedIndividual>
     
 
 
