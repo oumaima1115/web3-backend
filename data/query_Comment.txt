@@ -7,10 +7,16 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT *
 WHERE{
 	?Comment rdf:type ns:Comment;
-	ns:date ?date;
 	ns:description ?description;
-	}
+	ns:was_commented_on ?was_commented_on.
+	?was_commented_on a ns:Post;
+        ns:description ?postDescription;
+        ns:date ?date.
+?comment ns:was_commented_by ?was_commented_by.
+	?was_commented_by a ns:NormalUser;
+        ns:name ?username;
 
+}
 
 
 

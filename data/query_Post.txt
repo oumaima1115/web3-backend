@@ -6,11 +6,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT *
 WHERE{
-	?Post rdf:type ns:Post;
+	?Post a ns:Post;
 	ns:date ?date;
 	ns:description ?description;
+	ns:PostType ?PostType;
 
-	FILTER (?descriptionParam != "" && ?description = ?descriptionParam)
+	FILTER (?PostTypeParam != "" && ?PostType = ?PostTypeParam)
 	FILTER (?date > ?dateParam^^xsd:dateTime)
     FILTER regex(?description, ?regexParam, "i")
 	}

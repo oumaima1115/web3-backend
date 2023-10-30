@@ -139,7 +139,7 @@ public class RestApi {
     @GetMapping("/post")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> getPosts(
-            @RequestParam(value = "description", required = false) String description,
+            @RequestParam(value = "PostType", required = false) String PostType,
             @RequestParam(value = "date", required = false) String date,
             @RequestParam(value = "regexParam", required = false) String regexParam,
             @RequestParam(value = "orderBy", required = false) String orderBy,
@@ -155,12 +155,12 @@ public class RestApi {
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
             String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Post.txt");
             // Set the value of ?domainParam
-            if (description != null && !description.isEmpty()) {
+            if (PostType != null && !PostType.isEmpty()) {
                 // Replace the parameter placeholder with the actual domain value
-                queryStr = queryStr.replace("?descriptionParam",  '\"'+description+'\"' );
+                queryStr = queryStr.replace("?PostTypeParam",  '\"'+PostType+'\"' );
             } else {
                 // If domain is not provided, remove the parameter and the FILTER condition from the query
-                queryStr = queryStr.replace("FILTER (?descriptionParam != \"\" && ?description = ?descriptionParam)", "");
+                queryStr = queryStr.replace("FILTER (?PostTypeParam != \"\" && ?PostType = ?PostTypeParam)", "");
             }
 
             if (date != null && !date.isEmpty()) {
@@ -201,6 +201,7 @@ public class RestApi {
                 JsonObject jsonObject = new JsonObject();
 //                jsonObject.add("post", new JsonPrimitive(solution.get("Post").toString()));
                 jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
+                jsonObject.add("PostType", new JsonPrimitive(solution.get("PostType").toString()));
                 jsonObject.add("date", new JsonPrimitive(solution.get("date").toString().split("\\^\\^")[0]));
                 jsonArray.add(jsonObject);
             }
@@ -213,6 +214,29 @@ public class RestApi {
 
         } else {
             return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/comment")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String getComments() {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // query on the model after inference
+            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Comment.txt");
+            System.out.println(res);
+            return res.toString();
+
+
+        } else {
+            return ("Error when reading model from ontology");
         }
     }
 
