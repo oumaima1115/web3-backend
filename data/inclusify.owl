@@ -314,6 +314,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#domain -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#domain">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#email -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#email">
@@ -692,14 +701,75 @@
         <untitled-ontology-4:was_applied_to rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer"/>
     </owl:NamedIndividual>
     
-
-
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#JavaScript -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#JavaScript">
+        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#JavaScript">
+            <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+            <untitled-ontology-4:domain>Programming</untitled-ontology-4:domain>
+            <untitled-ontology-4:name>JavaScript</untitled-ontology-4:name>
+        </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Java -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Java">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
-        <untitled-ontology-4:name>JavaScript</untitled-ontology-4:name>
+        <untitled-ontology-4:domain>Programming</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>Java</untitled-ontology-4:name>
     </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#React -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#React">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Programming</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>React</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Leadership -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#English">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>English</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Excel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Spanish">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>Spanish</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#React -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Arabic">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>Arabic</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>Graphic design</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>UI</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UX">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
+        <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
+        <untitled-ontology-4:name>UX</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+
+
+
+
     
 
 
@@ -730,6 +800,15 @@
         <untitled-ontology-4:was_commented_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:was_commented_on rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Welcome_Post"/>
         <untitled-ontology-4:description>Jawkom behi</untitled-ontology-4:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#P1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Product"/>
+        <untitled-ontology-4:name>Sil3a</untitled-ontology-4:name>
     </owl:NamedIndividual>
     
 

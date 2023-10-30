@@ -3,9 +3,16 @@ package com.example.demo;
 
 import java.io.OutputStream;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.util.FileManager;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -184,4 +191,64 @@ public class RestApi {
         }
     }
 
+    @GetMapping("/skills")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String getSkills(
+            @RequestParam(value = "domain", required = false) String domain
+    ) {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // query on the model after inference
+            /*OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Skill.txt");
+
+            System.out.println(res);
+            return res.toString();*/
+
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Skill.txt");
+
+
+            // Set the value of ?domainParam
+            if (domain != null && !domain.isEmpty()) {
+                // Replace the parameter placeholder with the actual domain value
+                queryStr = queryStr.replace("?domainParam",  '\"'+domain+'\"' );
+            } else {
+                // If domain is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?domainParam != \"\" && ?domain = ?domainParam)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("skill", new JsonPrimitive(solution.get("skill").toString()));
+                jsonObject.add("name", new JsonPrimitive(solution.get("name").toString()));
+                jsonObject.add("domain", new JsonPrimitive(solution.get("domain").toString()));
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return jsonResult;
+
+        } else {
+            return ("Error when reading model from ontology");
+        }
+    }
 }
