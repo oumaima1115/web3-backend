@@ -812,6 +812,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Question"/>
+        <untitled-ontology-4:is_question_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz1"/>
         <untitled-ontology-4:description>Q11: Is this true?</untitled-ontology-4:description>
         <untitled-ontology-4:questionScore rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">3</untitled-ontology-4:questionScore>
     </owl:NamedIndividual>
@@ -822,6 +823,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q12">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Question"/>
+        <untitled-ontology-4:is_question_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz1"/>
         <untitled-ontology-4:description>Q12: What&apos;s this?</untitled-ontology-4:description>
         <untitled-ontology-4:questionScore rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">5</untitled-ontology-4:questionScore>
     </owl:NamedIndividual>
@@ -832,6 +834,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q13">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Question"/>
+        <untitled-ontology-4:is_question_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz1"/>
         <untitled-ontology-4:description>Q13: What&apos;s ===?</untitled-ontology-4:description>
         <untitled-ontology-4:questionScore rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">4</untitled-ontology-4:questionScore>
     </owl:NamedIndividual>
@@ -842,6 +845,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q14">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Question"/>
+        <untitled-ontology-4:is_question_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz1"/>
         <untitled-ontology-4:description>Q14: Tell me?</untitled-ontology-4:description>
         <untitled-ontology-4:questionScore rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">5</untitled-ontology-4:questionScore>
     </owl:NamedIndividual>

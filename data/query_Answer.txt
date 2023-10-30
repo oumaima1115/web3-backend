@@ -12,6 +12,8 @@ WHERE {
   ns:is_answer_for ?is_answer_for.
       {
         ?is_answer_for a ns:Question;
-                   ns:description ?description;
+                   ns:description ?questionDescription;
       }
+   FILTER (?isCorrect != "" && ?is_correct = ?isCorrect)
+   FILTER regex(?answerDescription, ?regexParam, "i")
 }

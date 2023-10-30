@@ -7,7 +7,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT *
 WHERE {
   ?question a ns:Question;
-  ns:description ?description;
-  ns:questionScore ?questionScore.
+              ns:description ?description;
+              ns:questionScore ?questionScore;
   FILTER (?scoreParam != "" && ?questionScore = ?scoreParam)
+  FILTER regex(?description, ?regexParam, "i")
 } ORDER BY ?orderType(?orderBy)

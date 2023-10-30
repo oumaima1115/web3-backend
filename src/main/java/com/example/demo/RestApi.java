@@ -267,6 +267,7 @@ public class RestApi {
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> getQuestions(
             @RequestParam(value = "score", required = false) String score,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
             @RequestParam(value = "orderBy", required = false) String orderBy,
             @RequestParam(value = "orderType", required = false) String orderType
             ) {
@@ -286,9 +287,15 @@ public class RestApi {
                 queryStr = queryStr.replace("FILTER (?scoreParam != \"\" && ?questionScore = ?scoreParam)", "");
             }
 
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?description, ?regexParam, \"i\")", "");
+            }
+
             if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
                     && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
-                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy );
                 queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
             } else {
                 queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
@@ -325,26 +332,72 @@ public class RestApi {
 
     @GetMapping("/answers")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String getAnswers() {
+    public ResponseEntity<String> getAnswers(
+            @RequestParam(value = "isCorrect", required = false) String isCorrect,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+    ) {
         String NS = "";
         // lire le model a partir d'une ontologie
         if (model != null) {
-            // lire le Namespace de l�ontologie
-            NS = model.getNsPrefixURI("");
-
-            // apply our rules on the owlInferencedModel
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Answer.txt");
 
-            // query on the model after inference
-            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Answer.txt");
-            System.out.println(res);
-            return res.toString();
+
+            // Set the value of ?domainParam
+            if (isCorrect != null && !isCorrect.isEmpty()) {
+                // Replace the parameter placeholder with the actual domain value
+                queryStr = queryStr.replace("?isCorrect",  isCorrect );
+            } else {
+                // If domain is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?isCorrect != \"\" && ?is_correct = ?isCorrect)", "");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                //queryStr = queryStr.replace("FILTER (regex(?answerDescription, ?regexParam, \"i\") || regex(?questionDescription, ?regexParam, \"i\"))", "");
+                queryStr = queryStr.replace("FILTER regex(?answerDescription, ?regexParam, \"i\")", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("answerDescription", new JsonPrimitive(solution.getLiteral("answerDescription").getString()));
+                jsonObject.add("is_correct", new JsonPrimitive(solution.getLiteral("is_correct").getString()));
+                //jsonObject.add("questionDescription", new JsonPrimitive(solution.get("questionDescription").toString()));
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
 
 
         } else {
-            return ("Error when reading model from ontology");
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
+
 
     @GetMapping("/quizzes")
     @CrossOrigin(origins = "http://localhost:3000")
