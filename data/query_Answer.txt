@@ -1,0 +1,19 @@
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+
+
+SELECT *
+WHERE {
+  ?answer a ns:Answer;
+  ns:description ?answerDescription;
+  ns:is_correct ?is_correct;
+  ns:is_answer_for ?is_answer_for.
+      {
+        ?is_answer_for a ns:Question;
+                   ns:description ?questionDescription;
+      }
+   FILTER (?isCorrect != "" && ?is_correct = ?isCorrect)
+   FILTER (regex(?answerDescription, ?regexParam, "i") || regex(?questionDescription, ?regexParam, "i"))
+}  ORDER BY ?orderType(?orderBy)
