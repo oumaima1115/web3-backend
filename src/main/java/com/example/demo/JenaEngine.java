@@ -148,7 +148,7 @@ public class JenaEngine {
         String queryString = FileTool.getContents(queryFile);
         return executeQuery(model, queryString);
     }
-}
+
 
     static public OutputStream executeQueryFileParams(Model model, String filepath, String params) {
         File queryFile = new File(filepath);

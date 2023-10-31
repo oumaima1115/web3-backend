@@ -752,6 +752,7 @@
         <untitled-ontology-4:salary_range>$500-$1000</untitled-ontology-4:salary_range>
         <untitled-ontology-4:title>full stack</untitled-ontology-4:title>
         <untitled-ontology-4:type>remote</untitled-ontology-4:type>
+     </owl:NamedIndividual>
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign">
