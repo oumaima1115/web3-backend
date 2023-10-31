@@ -141,7 +141,6 @@ public class JenaEngine {
                 in.close();
             } catch (IOException e) {
 // TODO Auto-generated catch block
-
                 return null;
             }
         }

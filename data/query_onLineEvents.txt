@@ -1,0 +1,22 @@
+
+
+
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT *
+WHERE {
+  ?onsite a ns:OnSite;
+          ns:title ?title;
+          ns:categoryEvent ?categoryEvent.
+  ?onsite ns:was_organized_by ?was_organized_by.
+  ?was_organized_by a ns:NormalUser;
+                  ns:name ?userName.
+
+  FILTER (?categoryEventParam != "" && ?categoryEvent = ?categoryEventParam)
+  FILTER regex(?title, ?regexParam, "i")
+
+  FILTER (?userNameParam != "" && ?userName = ?userNameParam)
+} ORDER BY ?orderType(?orderBy)
+
+

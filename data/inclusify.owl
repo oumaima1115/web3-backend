@@ -224,8 +224,8 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#address">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#User"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -248,6 +248,16 @@
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#categoryEvent -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#categoryEvent">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
@@ -545,18 +555,18 @@
     
 
 
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent -->
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSite -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent">
+    <owl:Class rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSite">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent -->
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent">
+    <owl:Class rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Event"/>
     </owl:Class>
     
@@ -677,12 +687,111 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#ArtExhibition -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#ArtExhibition">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>modernartexhibition.com</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">20</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Entertainment</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Explore the world of modern art through</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Modern Art</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Carnaval -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Carnaval">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSite"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:address>Ariana, Tunisa</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Music</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Carnaval event will be very soon.</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Carnaval</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Coffee -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Coffee">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSiteEvent"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnSite"/>
         <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>Join React event.</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">104</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Music</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Join Now our event.</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Tuto React Hooks</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Computer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Computer">
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Meet the new computer, where power meets sophistication. Unleash unparalleled performance, seamless multitasking, and lightning-fast processing.</untitled-ontology-4:description>
+        <untitled-ontology-4:name>Ryzen 5</untitled-ontology-4:name>
+        <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1967.0</untitled-ontology-4:price>
+        <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">23</untitled-ontology-4:quantity>
+        <untitled-ontology-4:type>Electronics</untitled-ontology-4:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Concert -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Concert">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>jazznightmusic.com</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Entertainment</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Enjoy an evening of jazz music with our online</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Jazz Night</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Cooking -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Cooking">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>cookingwithchef.com</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Health</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Learn to cook delicious Italian dishes</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Italian Cuisine</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#DevBasics -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#DevBasics">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>example.com/webinar</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Technology</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Join our online event to learn the fundamentals of web development.</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Learn Web Development Basics</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
 
@@ -714,6 +823,22 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
         <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
         <untitled-ontology-4:name>Graphic design</untitled-ontology-4:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Hackaton -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Hackaton">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>Link meet will display.</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">20</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Learn</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Join now our Hackaton.</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Learn languages in this Hackaton.</untitled-ontology-4:title>
     </owl:NamedIndividual>
     
 
@@ -792,10 +917,30 @@
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Party -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Party">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#OnlineEvent"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
         <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
         <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
-        <untitled-ontology-4:title>Party Timeeee!!!!</untitled-ontology-4:title>
+        <untitled-ontology-4:address>Link meet will display.</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">400</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Learn</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Join now our event.</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Learn Python in 4hrs</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Phone -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Phone">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Inclusify"/>
+        <untitled-ontology-4:was_bought_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Introducing this phone – your new essential companion. Experience top-tier performance, stunning visuals, and exceptional camera capabilities. With a sleek design and all-day battery life, it&apos;s the perfect blend of style and substance. Get ready to elevate your mobile experience.</untitled-ontology-4:description>
+        <untitled-ontology-4:name>IPhone X</untitled-ontology-4:name>
+        <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">999.0</untitled-ontology-4:price>
+        <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">5</untitled-ontology-4:quantity>
+        <untitled-ontology-4:type>Electronics</untitled-ontology-4:type>
     </owl:NamedIndividual>
     
 
@@ -951,12 +1096,54 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#VirtualYoga -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#VirtualYoga">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Online"/>
+        <untitled-ontology-4:was_attended_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:was_organized_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:address>Zoom Meeting ID: 123456789</untitled-ontology-4:address>
+        <untitled-ontology-4:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</untitled-ontology-4:capacity>
+        <untitled-ontology-4:categoryEvent>Health</untitled-ontology-4:categoryEvent>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-12-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Join our virtual yoga and meditation session</untitled-ontology-4:description>
+        <untitled-ontology-4:title>Virtual Yoga and Meditation Session</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Welcome_Post -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Welcome_Post">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
         <untitled-ontology-4:description>Welcome to Inclusify !</untitled-ontology-4:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair">
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Introducing our premium wheelchair, where mobility meets comfort and freedom. Designed for optimal maneuverability and stability</untitled-ontology-4:description>
+        <untitled-ontology-4:name>Wheelchair</untitled-ontology-4:name>
+        <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">600.0</untitled-ontology-4:price>
+        <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">2</untitled-ontology-4:quantity>
+        <untitled-ontology-4:type>Mobility</untitled-ontology-4:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1">
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Introducing our premium wheelchair, where mobility meets comfort and freedom. Designed for optimal maneuverability and stability</untitled-ontology-4:description>
+        <untitled-ontology-4:name>Wheelchair</untitled-ontology-4:name>
+        <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">700.0</untitled-ontology-4:price>
+        <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">1</untitled-ontology-4:quantity>
+        <untitled-ontology-4:type>Mobility</untitled-ontology-4:type>
     </owl:NamedIndividual>
     
 

@@ -13,3 +13,14 @@ WHERE {
   FILTER (?domainParam != "" && ?domain = ?domainParam)
   FILTER regex(?name, ?regexParam, "i")
 } ORDER BY ?orderType(?orderBy)
+
+
+
+
+
+
+
+
+
+
+
