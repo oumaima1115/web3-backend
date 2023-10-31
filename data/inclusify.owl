@@ -708,6 +708,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#FullStack -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#FullStack">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
+        <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
+        <untitled-ontology-4:address>Tunis , Tunisia</untitled-ontology-4:address>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-04-04T12:00:00</untitled-ontology-4:date>
+        <untitled-ontology-4:description>good Job opportunity</untitled-ontology-4:description>
+        <untitled-ontology-4:salary_range>$500-$1000</untitled-ontology-4:salary_range>
+        <untitled-ontology-4:title>full stack</untitled-ontology-4:title>
+        <untitled-ontology-4:type>remote</untitled-ontology-4:type>
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign">
@@ -900,24 +911,13 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
         <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
-        <untitled-ontology-4:address>9arrabi</untitled-ontology-4:address>
-        <untitled-ontology-4:description>khedma behya</untitled-ontology-4:description>
+        <untitled-ontology-4:address>tunisia</untitled-ontology-4:address>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-04-04T12:00:00</untitled-ontology-4:date>
+        <untitled-ontology-4:description>job description</untitled-ontology-4:description>
         <untitled-ontology-4:salary_range>$1000-$1000</untitled-ontology-4:salary_range>
         <untitled-ontology-4:title>new job</untitled-ontology-4:title>
         <untitled-ontology-4:type>remote</untitled-ontology-4:type>
     </owl:NamedIndividual>
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#SoftwareEngineer -->
-
-        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#FullStack">
-            <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Job"/>
-            <untitled-ontology-4:was_published_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Abdelkhalek"/>
-            <untitled-ontology-4:address>hay houni</untitled-ontology-4:address>
-            <untitled-ontology-4:description>khedma 3al 7it</untitled-ontology-4:description>
-            <untitled-ontology-4:salary_range>$500-$1000</untitled-ontology-4:salary_range>
-            <untitled-ontology-4:title>khedma</untitled-ontology-4:title>
-            <untitled-ontology-4:type>remote</untitled-ontology-4:type>
-        </owl:NamedIndividual>
     
 
 
