@@ -669,13 +669,17 @@
         <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:is_correct>
     </owl:NamedIndividual>
     
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer2 -->
+
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer2">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
         <untitled-ontology-4:is_answer_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11"/>
         <untitled-ontology-4:description>This is false</untitled-ontology-4:description>
         <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</untitled-ontology-4:is_correct>
     </owl:NamedIndividual>
-
+    
 
 
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Arabic -->
@@ -709,17 +713,17 @@
     
 
 
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#English -->
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#CommentOnWelcome -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#English">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
-        <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
-        <untitled-ontology-4:name>English</untitled-ontology-4:name>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#CommentOnWelcome">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Comment"/>
+        <untitled-ontology-4:was_commented_on rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Welcome_Post"/>
+        <untitled-ontology-4:was_posted_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:description>Thanks a lot!</untitled-ontology-4:description>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#False -->
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#English -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#English">
@@ -752,7 +756,10 @@
         <untitled-ontology-4:salary_range>$500-$1000</untitled-ontology-4:salary_range>
         <untitled-ontology-4:title>full stack</untitled-ontology-4:title>
         <untitled-ontology-4:type>remote</untitled-ontology-4:type>
-     </owl:NamedIndividual>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#GraphicDesign">
@@ -845,6 +852,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post_About_Peace -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post_About_Peace">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
+        <untitled-ontology-4:was_posted_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:PostType>Announcement</untitled-ontology-4:PostType>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:description>Free palenstine</untitled-ontology-4:description>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11">
@@ -900,14 +919,22 @@
         <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">85.0</untitled-ontology-4:score>
     </owl:NamedIndividual>
     
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz2 -->
+
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz2">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz"/>
         <untitled-ontology-4:has_skill rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Java"/>
         <untitled-ontology-4:was_taken_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-23T14:30:00Z</untitled-ontology-4:date>
         <untitled-ontology-4:difficulty>Hard</untitled-ontology-4:difficulty>
-        <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10</untitled-ontology-4:score>
+        <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10.0</untitled-ontology-4:score>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz3 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz3">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz"/>
@@ -917,7 +944,7 @@
         <untitled-ontology-4:difficulty>Hard</untitled-ontology-4:difficulty>
         <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">55.5</untitled-ontology-4:score>
     </owl:NamedIndividual>
-
+    
 
 
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen -->
@@ -961,36 +988,6 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
         <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
         <untitled-ontology-4:name>Spanish</untitled-ontology-4:name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#True -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Spanish">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
-        <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
-        <untitled-ontology-4:name>Spanish</untitled-ontology-4:name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UI -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UI">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
-        <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
-        <untitled-ontology-4:name>UI</untitled-ontology-4:name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UX -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#UX">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
-        <untitled-ontology-4:domain>Design</untitled-ontology-4:domain>
-        <untitled-ontology-4:name>UX</untitled-ontology-4:name>
     </owl:NamedIndividual>
     
 
