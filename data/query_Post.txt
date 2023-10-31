@@ -1,25 +1,18 @@
 PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 
 SELECT *
 WHERE{
-	?Post rdf:type ns:Post;
+	?Post a ns:Post;
 	ns:date ?date;
 	ns:description ?description;
+	ns:PostType ?PostType;
+
+
+	FILTER (?PostTypeParam != "" && ?PostType = ?PostTypeParam)
+	FILTER (?date > ?dateParam^^xsd:dateTime)
+    FILTER regex(?description, ?regexParam, "i")
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,28 @@
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+
+
+SELECT *
+WHERE{
+	?Comment rdf:type ns:Comment;
+	ns:description ?description;
+	ns:was_commented_on ?was_commented_on.
+	?was_commented_on a ns:Post;
+        ns:description ?postDescription;
+        ns:date ?date;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

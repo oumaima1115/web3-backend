@@ -254,9 +254,15 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/post")
+    @GetMapping("/posts")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String afficherComment() {
+    public ResponseEntity<String> getPosts(
+            @RequestParam(value = "PostType", required = false) String PostType,
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam(value = "regexParam", required = false) String regexParam,
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "orderType", required = false) String orderType
+    ) {
         String NS = "";
         // lire le model a partir d'une ontologie
         if (model != null) {
@@ -265,20 +271,125 @@ public class RestApi {
 
             // apply our rules on the owlInferencedModel
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Post.txt");
+            // Set the value of ?domainParam
+            if (PostType != null && !PostType.isEmpty()) {
+                // Replace the parameter placeholder with the actual domain value
+                queryStr = queryStr.replace("?PostTypeParam",  '\"'+PostType+'\"' );
+            } else {
+                // If domain is not provided, remove the parameter and the FILTER condition from the query
+                queryStr = queryStr.replace("FILTER (?PostTypeParam != \"\" && ?PostType = ?PostTypeParam)", "");
+            }
 
+            if (date != null && !date.isEmpty()) {
+                System.out.println(date);
+                queryStr = queryStr.replace("?dateParam",  '\"'+date+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER (?date > ?dateParam^^xsd:dateTime)", "");
+                System.out.println("replaced!");
+            }
+
+            if (regexParam != null && !regexParam.isEmpty()) {
+                queryStr = queryStr.replace("?regexParam",  '\"'+regexParam+'\"' );
+            } else {
+                queryStr = queryStr.replace("FILTER regex(?description, ?regexParam, \"i\")", "");
+            }
+
+            if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
+                    && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
+            } else {
+                queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
+            }
+
+            System.out.println(queryStr);
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                System.out.println("aaaaa");
+                System.out.println(solution);
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
+                jsonObject.add("PostType", new JsonPrimitive(solution.get("PostType").toString()));
+                jsonObject.add("date", new JsonPrimitive(solution.get("date").toString().split("\\^\\^")[0]));
+//                if(!solution.get("username").toString().isEmpty()){
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+//                }
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/comments")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<String> getComments() {
+        String NS = "";
+        // lire le model a partir d'une ontologie
+        if (model != null) {
+            // lire le Namespace de l�ontologie
+            NS = model.getNsPrefixURI("");
+
+            // apply our rules on the owlInferencedModel
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Comment.txt");
             // query on the model after inference
-            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Post.txt");
-//            OutputStream res2 =  JenaEngine.executeQueryFile(inferedModel, "data/query_OrigineVegetale.txt");
-//            OutputStream res3 =  JenaEngine.executeQueryFile(inferedModel, "data/query_Liquide.txt");
 
-//            String res = res1.toString() + res2.toString() + res3.toString() ;
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
 
-            System.out.println(res);
-            return res.toString();
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                System.out.println("aaaaa");
+                System.out.println(solution);
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+                jsonObject.add("postDescription", new JsonPrimitive(solution.get("postDescription").toString()));
+//                jsonObject.add("date", new JsonPrimitive(solution.get("date").toString().split("\\^\\^")[0]));
+//
+//                was_commented_by
+//                if(!solution.get("username").toString().isEmpty()){
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+//                }
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
+
+
+//            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Comment.txt");
+//            System.out.println(res);
+//            return res.toString();
 
 
         } else {
-            return ("Error when reading model from ontology");
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 
