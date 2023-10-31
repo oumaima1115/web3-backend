@@ -1,0 +1,14 @@
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+
+
+SELECT *
+WHERE{
+	?Admin rdf:type ns:Admin;
+	ns:address ?address;
+	ns:email ?email;
+	ns:name ?name;
+	ns:password ?password;
+	}
