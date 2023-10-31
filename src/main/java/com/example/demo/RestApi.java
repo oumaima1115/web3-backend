@@ -852,7 +852,7 @@ public class RestApi {
 
             if (orderBy != null && !orderBy.isEmpty() && orderType != null && !orderType.isEmpty()
                     && (orderType.toUpperCase().equals("ASC") || orderType.toUpperCase().equals("DESC"))) {
-                queryStr = queryStr.replace("?orderBy",  '?'+orderBy.toLowerCase() );
+                queryStr = queryStr.replace("?orderBy",  '?'+orderBy );
                 queryStr = queryStr.replace("?orderType",  orderType.toUpperCase() );
             } else {
                 queryStr = queryStr.replace("ORDER BY ?orderType(?orderBy)", "");
