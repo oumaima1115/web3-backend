@@ -1,12 +1,15 @@
+
+
+
 PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT *
 WHERE {
-  ?online a ns:Online;
+  ?onsite a ns:OnSite;
           ns:title ?title;
           ns:categoryEvent ?categoryEvent.
-  ?online ns:was_organized_by ?was_organized_by.
+  ?onsite ns:was_organized_by ?was_organized_by.
   ?was_organized_by a ns:NormalUser;
                   ns:name ?userName.
 
@@ -15,3 +18,5 @@ WHERE {
 
   FILTER (?userNameParam != "" && ?userName = ?userNameParam)
 } ORDER BY ?orderType(?orderBy)
+
+
