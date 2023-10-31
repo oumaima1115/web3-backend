@@ -136,7 +136,7 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/post")
+    @GetMapping("/posts")
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> getPosts(
             @RequestParam(value = "PostType", required = false) String PostType,
@@ -197,12 +197,14 @@ public class RestApi {
             while (results.hasNext()) {
                 QuerySolution solution = results.next();
                 System.out.println("aaaaa");
-                System.out.println(solution.get("date").toString().split("\\^\\^")[0]);
+                System.out.println(solution);
                 JsonObject jsonObject = new JsonObject();
-//                jsonObject.add("post", new JsonPrimitive(solution.get("Post").toString()));
                 jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
                 jsonObject.add("PostType", new JsonPrimitive(solution.get("PostType").toString()));
                 jsonObject.add("date", new JsonPrimitive(solution.get("date").toString().split("\\^\\^")[0]));
+//                if(!solution.get("username").toString().isEmpty()){
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+//                }
                 jsonArray.add(jsonObject);
             }
 
@@ -217,9 +219,9 @@ public class RestApi {
         }
     }
 
-    @GetMapping("/comment")
+    @GetMapping("/comments")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String getComments() {
+    public ResponseEntity<String> getComments() {
         String NS = "";
         // lire le model a partir d'une ontologie
         if (model != null) {
@@ -228,15 +230,48 @@ public class RestApi {
 
             // apply our rules on the owlInferencedModel
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-
+            String queryStr = FileManager.get().readWholeFileAsUTF8("data/query_Comment.txt");
             // query on the model after inference
-            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Comment.txt");
-            System.out.println(res);
-            return res.toString();
+
+            // Execute the query
+            Query query = QueryFactory.create(queryStr);
+            QueryExecution qexec = QueryExecutionFactory.create(query, inferedModel);
+
+            // Execute the query
+            ResultSet results = qexec.execSelect();
+            JsonArray jsonArray = new JsonArray();
+            while (results.hasNext()) {
+                QuerySolution solution = results.next();
+                System.out.println("aaaaa");
+                System.out.println(solution);
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.add("description", new JsonPrimitive(solution.get("description").toString()));
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+                jsonObject.add("postDescription", new JsonPrimitive(solution.get("postDescription").toString()));
+//                jsonObject.add("date", new JsonPrimitive(solution.get("date").toString().split("\\^\\^")[0]));
+//
+//                was_commented_by
+//                if(!solution.get("username").toString().isEmpty()){
+//                jsonObject.add("username", new JsonPrimitive(solution.get("username").toString()));
+//                }
+                jsonArray.add(jsonObject);
+            }
+
+            // Convert the JSON to a string
+            String jsonResult = jsonArray.toString();
+
+            System.out.println(jsonResult);
+            return new ResponseEntity<>(jsonResult, HttpStatus.OK);
+
+
+
+//            OutputStream res =  JenaEngine.executeQueryFile(inferedModel, "data/query_Comment.txt");
+//            System.out.println(res);
+//            return res.toString();
 
 
         } else {
-            return ("Error when reading model from ontology");
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.OK);
         }
     }
 

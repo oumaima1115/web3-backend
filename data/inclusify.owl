@@ -660,6 +660,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Another_One">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
+        <untitled-ontology-4:was_posted_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:PostType>Complaint</untitled-ontology-4:PostType>
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
         <untitled-ontology-4:description>AND WAHT&apos;S THIS</untitled-ontology-4:description>
@@ -688,6 +689,17 @@
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
         <untitled-ontology-4:description>Join Now our event.</untitled-ontology-4:description>
         <untitled-ontology-4:title>Tuto React Hooks</untitled-ontology-4:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#CommentOnOtherPost -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#CommentOnOtherPost">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Comment"/>
+        <untitled-ontology-4:was_commented_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Fourat"/>
+        <untitled-ontology-4:was_commented_on rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Another_One"/>
+        <untitled-ontology-4:description>Noice</untitled-ontology-4:description>
     </owl:NamedIndividual>
     
 
@@ -915,6 +927,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Welcome_Post">
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Post"/>
+        <untitled-ontology-4:was_posted_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
         <untitled-ontology-4:PostType>Announcement</untitled-ontology-4:PostType>
         <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
         <untitled-ontology-4:description>Welcome to Inclusify !</untitled-ontology-4:description>

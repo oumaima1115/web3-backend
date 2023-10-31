@@ -11,20 +11,8 @@ WHERE{
 	ns:description ?description;
 	ns:PostType ?PostType;
 
+
 	FILTER (?PostTypeParam != "" && ?PostType = ?PostTypeParam)
 	FILTER (?date > ?dateParam^^xsd:dateTime)
     FILTER regex(?description, ?regexParam, "i")
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
