@@ -1,0 +1,19 @@
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+
+
+SELECT *
+WHERE {
+  ?quiz a ns:Quiz;
+        ns:score ?score;
+        ns:date ?playedAt;
+        ns:has_skill ?has_skill.
+  ?has_skill a ns:Skill;
+             ns:name ?skillName.
+  ?quiz ns:was_taken_by ?was_taken_by.
+  ?was_taken_by a ns:NormalUser;
+                 ns:name ?userName.
+  FILTER (regex(?userName, ?regexParam, "i") || regex(?skillName, ?regexParam, "i"))
+} ORDER BY ?orderType(?orderBy)
