@@ -141,10 +141,31 @@ public class JenaEngine {
                 in.close();
             } catch (IOException e) {
 // TODO Auto-generated catch block
+
                 return null;
             }
         }
         String queryString = FileTool.getContents(queryFile);
+        return executeQuery(model, queryString);
+    }
+}
+
+    static public OutputStream executeQueryFileParams(Model model, String filepath, String params) {
+        File queryFile = new File(filepath);
+        InputStream in = FileManager.get().open(filepath);
+        if (in == null) {
+            System.out.println("Query file: " + filepath + " not found");
+            return null;
+        } else {
+            try {
+                in.close();
+            } catch (IOException e) {
+                return null;
+            }
+        }
+        String queryString = FileTool.getContents(queryFile);
+        queryString = String.format(queryString, params); // Replace %s with the actual params value
+
         return executeQuery(model, queryString);
     }
 }

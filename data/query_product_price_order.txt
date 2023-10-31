@@ -1,13 +1,13 @@
 PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-
-
-
 SELECT *
 WHERE{
-	?OnlineEvent rdf:type ns:OnlineEvent;
-	ns:title ?title;
-	ns:capacity ?capacity;
+	?Product rdf:type ns:Product;
+	ns:name ?name;
 	ns:description ?description;
-	}
+	ns:date ?date;
+	ns:price ?price;
+	ns:quantity ?quantity;
+	ns:type ?type;
+	} ORDER BY DESC(?price)

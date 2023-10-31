@@ -1,0 +1,16 @@
+PREFIX ns: <http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT *
+WHERE {
+       ?Job rdf:type ns:Job;
+       ns:title ?title;
+       ns:description ?description;
+       ns:address ?address;
+       ns:type ?type;
+       ns:date ?date;
+       ns:salary_range ?salary_range.
+
+       FILTER (?titleParam != "" && ?title = ?titleParam)
+       FILTER (?regexParam != "" && ?description = ?regexParam)
+  } ORDER BY ?orderType(?orderBy)
