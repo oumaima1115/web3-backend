@@ -830,7 +830,50 @@
         <untitled-ontology-4:description>Q13: What&apos;s ===?</untitled-ontology-4:description>
         <untitled-ontology-4:questionScore rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">4</untitled-ontology-4:questionScore>
     </owl:NamedIndividual>
-    
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair">
+            <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+            <untitled-ontology-4:description>Introducing our premium wheelchair, where mobility meets comfort and freedom. Designed for optimal maneuverability and stability</untitled-ontology-4:description>
+            <untitled-ontology-4:name>Wheelchair</untitled-ontology-4:name>
+            <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">600.0</untitled-ontology-4:price>
+            <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">2</untitled-ontology-4:quantity>
+            <untitled-ontology-4:type>Mobility</untitled-ontology-4:type>
+        </owl:NamedIndividual>
+
+
+
+        <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1 -->
+
+        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Wheelchair1">
+            <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+            <untitled-ontology-4:description>Introducing our premium wheelchair, where mobility meets comfort and freedom. Designed for optimal maneuverability and stability</untitled-ontology-4:description>
+            <untitled-ontology-4:name>Wheelchair</untitled-ontology-4:name>
+            <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">700.0</untitled-ontology-4:price>
+            <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">1</untitled-ontology-4:quantity>
+            <untitled-ontology-4:type>Mobility</untitled-ontology-4:type>
+        </owl:NamedIndividual>
+
+        <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Phone">
+                <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Inclusify"/>
+                <untitled-ontology-4:was_bought_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+                <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+                <untitled-ontology-4:description>Introducing this phone – your new essential companion. Experience top-tier performance, stunning visuals, and exceptional camera capabilities. With a sleek design and all-day battery life, it&apos;s the perfect blend of style and substance. Get ready to elevate your mobile experience.</untitled-ontology-4:description>
+                <untitled-ontology-4:name>IPhone X</untitled-ontology-4:name>
+                <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">999.0</untitled-ontology-4:price>
+                <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">5</untitled-ontology-4:quantity>
+                <untitled-ontology-4:type>Electronics</untitled-ontology-4:type>
+            </owl:NamedIndividual>
+
+                <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Computer">
+                    <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-15T09:00:00Z</untitled-ontology-4:date>
+                    <untitled-ontology-4:description>Meet the new computer, where power meets sophistication. Unleash unparalleled performance, seamless multitasking, and lightning-fast processing.</untitled-ontology-4:description>
+                    <untitled-ontology-4:name>Ryzen 5</untitled-ontology-4:name>
+                    <untitled-ontology-4:price rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1967.0</untitled-ontology-4:price>
+                    <untitled-ontology-4:quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">23</untitled-ontology-4:quantity>
+                    <untitled-ontology-4:type>Electronics</untitled-ontology-4:type>
+                </owl:NamedIndividual>
+
+
 
 
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q14 -->
