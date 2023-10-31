@@ -15,4 +15,5 @@ WHERE {
   ?quiz ns:was_taken_by ?was_taken_by.
   ?was_taken_by a ns:NormalUser;
                  ns:name ?userName.
-}
+  FILTER (regex(?userName, ?regexParam, "i") || regex(?skillName, ?regexParam, "i"))
+} ORDER BY ?orderType(?orderBy)

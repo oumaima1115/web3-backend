@@ -15,5 +15,5 @@ WHERE {
                    ns:description ?questionDescription;
       }
    FILTER (?isCorrect != "" && ?is_correct = ?isCorrect)
-   FILTER regex(?answerDescription, ?regexParam, "i")
-}
+   FILTER (regex(?answerDescription, ?regexParam, "i") || regex(?questionDescription, ?regexParam, "i"))
+}  ORDER BY ?orderType(?orderBy)

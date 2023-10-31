@@ -656,6 +656,24 @@
     
 
 
+    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
+        <untitled-ontology-4:is_answer_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11"/>
+        <untitled-ontology-4:description>This is true</untitled-ontology-4:description>
+        <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:is_correct>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
+        <untitled-ontology-4:is_answer_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11"/>
+        <untitled-ontology-4:description>This is false</untitled-ontology-4:description>
+        <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</untitled-ontology-4:is_correct>
+    </owl:NamedIndividual>
+
+
+
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Arabic -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Arabic">
@@ -687,17 +705,6 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
         <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
         <untitled-ontology-4:name>English</untitled-ontology-4:name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#False -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#False">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
-        <untitled-ontology-4:is_answer_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11"/>
-        <untitled-ontology-4:description rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:description>
-        <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</untitled-ontology-4:is_correct>
     </owl:NamedIndividual>
     
 
@@ -863,6 +870,24 @@
         <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">85.0</untitled-ontology-4:score>
     </owl:NamedIndividual>
     
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz"/>
+        <untitled-ontology-4:has_skill rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Java"/>
+        <untitled-ontology-4:was_taken_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-11-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:difficulty>Hard</untitled-ontology-4:difficulty>
+        <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">10</untitled-ontology-4:score>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Quiz"/>
+        <untitled-ontology-4:has_skill rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#React"/>
+        <untitled-ontology-4:was_taken_by rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen"/>
+        <untitled-ontology-4:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-23T14:30:00Z</untitled-ontology-4:date>
+        <untitled-ontology-4:difficulty>Hard</untitled-ontology-4:difficulty>
+        <untitled-ontology-4:score rdf:datatype="http://www.w3.org/2001/XMLSchema#double">55.5</untitled-ontology-4:score>
+    </owl:NamedIndividual>
+
 
 
     <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Rayen -->
@@ -900,17 +925,6 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Skill"/>
         <untitled-ontology-4:domain>Language</untitled-ontology-4:domain>
         <untitled-ontology-4:name>Spanish</untitled-ontology-4:name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#True -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#True">
-        <rdf:type rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Answer"/>
-        <untitled-ontology-4:is_answer_for rdf:resource="http://www.semanticweb.org/rayenbourguiba/ontologies/2023/9/untitled-ontology-4#Q11"/>
-        <untitled-ontology-4:description rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</untitled-ontology-4:description>
-        <untitled-ontology-4:is_correct rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:is_correct>
     </owl:NamedIndividual>
     
 
