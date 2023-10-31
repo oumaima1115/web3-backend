@@ -8,6 +8,7 @@ WHERE {
        ns:description ?description;
        ns:address ?address;
        ns:type ?type;
+       ns:date ?date;
        ns:salary_range ?salary_range.
 
        FILTER (?titleParam != "" && ?title = ?titleParam)

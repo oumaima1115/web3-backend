@@ -181,6 +181,9 @@ public class RestApi {
                 jsonObject.add("type", new JsonPrimitive(solution.get("type").toString()));
                 jsonObject.add("address", new JsonPrimitive(solution.get("address").toString()));
                 jsonObject.add("salary_range", new JsonPrimitive(solution.get("salary_range").toString()));
+                String dateValue = solution.get("date").toString();
+                jsonObject.add("date", new JsonPrimitive(dateValue.substring(0, dateValue.indexOf("T"))));
+                //jsonObject.add("date", new JsonPrimitive(solution.get("date").toString()));
 
 
 
